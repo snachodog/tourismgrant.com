@@ -2,8 +2,6 @@
    Choteau Area Community Tourism Grant – Stylesheet
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&display=swap');
-
 /* --- Custom Properties ------------------------------------ */
 :root {
   --color-earth:      #6b4f2a;
@@ -19,8 +17,11 @@
   --color-white:      #ffffff;
   --color-accent:     #b35a1f;
 
-  --font-serif: 'Lora', Georgia, 'Times New Roman', serif;
-  --font-sans:  system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  /* Typography per Choteau Area Branding & Graphics Standards Guide:
+     Headlines → Palatino Bold Italic
+     Body/Subheads → Calibri (Regular / Bold) */
+  --font-display: 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
+  --font-sans:    Calibri, 'Gill Sans', 'Trebuchet MS', 'Segoe UI', sans-serif;
 
   --radius:    6px;
   --shadow:    0 2px 8px rgba(44, 36, 22, 0.10);
@@ -67,17 +68,31 @@ blockquote cite {
 }
 
 /* --- Typography ------------------------------------------- */
-h1, h2, h3, h4 {
-  font-family: var(--font-serif);
+/* Headlines: Palatino Bold Italic (per Choteau Branding Guide) */
+h1, h2 {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
   line-height: 1.25;
   color: var(--color-earth);
   overflow-wrap: break-word;
   word-break: break-word;
 }
 
-h1 { font-size: clamp(1.75rem, 4vw, 2.75rem); font-weight: 700; }
-h2 { font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 600; margin-bottom: 0.75rem; }
-h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 0.4rem; }
+/* Subheads: Calibri Bold (per Choteau Branding Guide) */
+h3, h4 {
+  font-family: var(--font-sans);
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--color-earth);
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+h1 { font-size: clamp(1.75rem, 4vw, 2.75rem); }
+h2 { font-size: clamp(1.4rem, 3vw, 2rem); margin-bottom: 0.75rem; }
+h3 { font-size: 1.2rem; margin-bottom: 0.4rem; }
 
 p { margin-bottom: 1rem; }
 p:last-child { margin-bottom: 0; }
@@ -102,6 +117,71 @@ section:nth-child(even) { background: var(--color-stone-dark); }
   margin-bottom: 0.35rem;
 }
 
+/* --- Site Header (logo + nav) ----------------------------- */
+/* Black drop-shadow logo on light background per Choteau Branding Guide */
+.site-header {
+  background: var(--color-stone);
+  border-bottom: 1px solid var(--color-stone-dark);
+  padding: 0.6rem 1.25rem;
+}
+
+.site-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.site-logo-link {
+  display: inline-block;
+  line-height: 0;
+  flex-shrink: 0;
+}
+
+.site-logo {
+  height: 52px;
+  width: auto;
+}
+
+.site-nav ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.15rem 0.25rem;
+  margin: 0;
+  padding: 0;
+}
+
+.site-nav a {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  padding: 0.35rem 0.7rem;
+  border-radius: var(--radius);
+  transition: background 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+
+.site-nav a:hover {
+  background: var(--color-stone-dark);
+  color: var(--color-earth);
+}
+
+.site-nav a[aria-current="page"] {
+  background: var(--color-earth);
+  color: var(--color-white);
+}
+
+@media (max-width: 640px) {
+  .site-nav ul { gap: 0.15rem; }
+  .site-nav a  { font-size: 0.78rem; padding: 0.3rem 0.5rem; }
+  .site-logo   { height: 42px; }
+}
+
 /* --- Header / Hero ---------------------------------------- */
 #hero {
   background: linear-gradient(160deg, var(--color-earth) 0%, var(--color-earth-light) 100%);
@@ -115,6 +195,15 @@ section:nth-child(even) { background: var(--color-stone-dark); }
   max-width: 760px;
   margin-inline: auto;
   margin-bottom: 1rem;
+}
+
+#hero .hero-tagline {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--color-sage-light);
+  margin-bottom: 0.75rem;
+  margin-inline: auto;
 }
 
 #hero .hero-subtitle {
@@ -157,7 +246,7 @@ section:nth-child(even) { background: var(--color-stone-dark); }
 }
 
 .stat-card .stat-value {
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
   font-size: 2rem;
   font-weight: 700;
   color: var(--color-earth);
@@ -362,12 +451,6 @@ footer .footer-attribution {
   color: var(--color-stone-dark);
 }
 
-footer .footer-scope {
-  font-size: 0.8rem;
-  color: var(--color-earth-light);
-  font-style: italic;
-}
-
 /* --- Project Detail Pages --------------------------------- */
 .project-page-hero {
   background: linear-gradient(160deg, var(--color-earth) 0%, var(--color-earth-light) 100%);
@@ -482,7 +565,7 @@ footer .footer-scope {
   background: var(--color-stone);
   font-weight: 700;
   color: var(--color-earth);
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
 }
 
 .spending-table .amount-cell {
