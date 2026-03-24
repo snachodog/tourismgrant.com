@@ -453,6 +453,23 @@ footer .footer-attribution {
   color: var(--color-stone-dark);
 }
 
+.footer-github {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  color: var(--color-earth-light);
+  text-decoration: none;
+}
+
+.footer-github:hover { color: var(--color-white); }
+
+.github-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
 /* --- Project Detail Pages --------------------------------- */
 .project-page-hero {
   background: linear-gradient(160deg, var(--color-earth) 0%, var(--color-earth-light) 100%);
@@ -568,6 +585,25 @@ footer .footer-attribution {
   font-weight: 700;
   color: var(--color-earth);
   font-family: var(--font-display);
+}
+
+.spending-table .year-row-planned td {
+  color: var(--color-text-muted);
+}
+
+.planned-tag {
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 700;
+  font-style: normal;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: var(--color-stone-dark);
+  color: var(--color-text-muted);
+  padding: 0.1em 0.45em;
+  border-radius: 3px;
+  vertical-align: middle;
+  margin-left: 0.4rem;
 }
 
 .spending-table .amount-cell {
