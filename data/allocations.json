@@ -46,23 +46,23 @@
       ],
       "milestones": [
         { "label": "Arena appraisal", "fiscalYear": "FY2026", "status": "complete" },
-        { "label": "\"No Rise\" flood certification", "fiscalYear": "FY2026", "status": "complete" },
         { "label": "Renovation – Phase 1", "fiscalYear": "FY2026", "status": "complete" },
-        { "label": "Renovation – Phase 2", "fiscalYear": "FY2027", "status": "complete" },
-        { "label": "Renovation – Phase 3 (completion) & sound equipment", "fiscalYear": "FY2028", "status": "complete" }
+        { "label": "Renovation – Phase 2", "fiscalYear": "FY2027", "status": "pending" },
+        { "label": "Renovation – Phase 3 (completion) & sound equipment", "fiscalYear": "FY2028", "status": "pending" }
       ],
       "yearlySpend": [
         {
           "year": "FY2026",
+          "confirmed": true,
           "total": 37600,
           "lineItems": [
             { "description": "Arena appraisal", "amount": 2600 },
-            { "description": "\"No Rise\" flood certification", "amount": 0 },
             { "description": "Renovation – Phase 1 begins", "amount": 35000 }
           ]
         },
         {
           "year": "FY2027",
+          "confirmed": false,
           "total": 370000,
           "lineItems": [
             { "description": "Renovation – Phase 2 (continued)", "amount": 370000 }
@@ -70,6 +70,7 @@
         },
         {
           "year": "FY2028",
+          "confirmed": false,
           "total": 25000,
           "lineItems": [
             { "description": "Renovation – Phase 3 (completion)", "amount": 20000 },
@@ -93,13 +94,14 @@
       "milestones": [
         { "label": "Permitting & site assessments", "fiscalYear": "FY2026", "status": "complete" },
         { "label": "Architectural design", "fiscalYear": "FY2026", "status": "complete" },
-        { "label": "Demolition", "fiscalYear": "FY2027", "status": "complete" },
-        { "label": "Construction – Phase 1", "fiscalYear": "FY2027", "status": "complete" },
-        { "label": "Construction – Phase 2 (completion)", "fiscalYear": "FY2028", "status": "in-progress" }
+        { "label": "Demolition", "fiscalYear": "FY2027", "status": "pending" },
+        { "label": "Construction – Phase 1", "fiscalYear": "FY2027", "status": "pending" },
+        { "label": "Construction – Phase 2 (completion)", "fiscalYear": "FY2028", "status": "pending" }
       ],
       "yearlySpend": [
         {
           "year": "FY2026",
+          "confirmed": true,
           "total": 40000,
           "lineItems": [
             { "description": "Permitting & site assessments", "amount": 15000 },
@@ -108,6 +110,7 @@
         },
         {
           "year": "FY2027",
+          "confirmed": false,
           "total": 385000,
           "lineItems": [
             { "description": "Demolition", "amount": 55000 },
@@ -119,6 +122,7 @@
         },
         {
           "year": "FY2028",
+          "confirmed": false,
           "total": 140000,
           "lineItems": [
             { "description": "Construction – completion draw", "amount": 140000 }
@@ -134,43 +138,46 @@
       "totalAllocated": 1037500,
       "description": "Expansion of gallery space at the Montana Dinosaur Center, accommodating new fossil exhibits and increasing visitor capacity at one of the region's premier tourist destinations.",
       "goals": [
-        "Expand the gallery with a 9,000 square foot building addition to display a seismosaurus model and specimens currently held in storage",
         "Provide a unique venue for guest speakers, youth and adult educational events, and traveling exhibits",
         "Attract a greater variety of visitors and increase the amount of time spent at the Montana Dinosaur Center"
       ],
       "milestones": [
-        { "label": "Architectural design", "fiscalYear": "FY2026", "status": "complete" },
-        { "label": "Construction – Phase 1", "fiscalYear": "FY2027", "status": "complete" },
-        { "label": "Construction – Phase 2", "fiscalYear": "FY2028", "status": "complete" },
-        { "label": "Construction – Phase 3 (completion)", "fiscalYear": "FY2029", "status": "in-progress" }
+        { "label": "Conceptual design", "fiscalYear": "FY2026", "status": "complete" },
+        { "label": "Architectural design", "fiscalYear": "FY2027", "status": "pending" },
+        { "label": "Construction – Phase 1", "fiscalYear": "FY2028", "status": "pending" },
+        { "label": "Construction – Phase 2 (completion)", "fiscalYear": "FY2029", "status": "pending" }
       ],
       "yearlySpend": [
         {
           "year": "FY2026",
+          "confirmed": true,
           "total": 55000,
           "lineItems": [
-            { "description": "Architectural design", "amount": 55000 }
+            { "description": "Conceptual design", "amount": 55000 }
           ]
         },
         {
           "year": "FY2027",
+          "confirmed": false,
           "total": 100000,
           "lineItems": [
-            { "description": "Construction – Phase 1", "amount": 100000 }
+            { "description": "Architectural design", "amount": 100000 }
           ]
         },
         {
           "year": "FY2028",
+          "confirmed": false,
           "total": 482500,
           "lineItems": [
-            { "description": "Construction – Phase 2", "amount": 482500 }
+            { "description": "Construction – Phase 1", "amount": 482500 }
           ]
         },
         {
           "year": "FY2029",
+          "confirmed": false,
           "total": 400000,
           "lineItems": [
-            { "description": "Construction – Phase 3 (completion)", "amount": 400000 }
+            { "description": "Construction – Phase 2 (completion)", "amount": 400000 }
           ]
         }
       ]

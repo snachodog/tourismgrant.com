@@ -23,7 +23,9 @@ function getProjectId() {
 }
 
 function renderStats(project) {
-  const totalSpent = project.yearlySpend.reduce((sum, y) => sum + y.total, 0);
+  const totalSpent = project.yearlySpend
+    .filter(y => y.confirmed)
+    .reduce((sum, y) => sum + y.total, 0);
   const pct = project.totalAllocated > 0
     ? Math.round((totalSpent / project.totalAllocated) * 100)
     : 0;
@@ -35,25 +37,32 @@ function renderStats(project) {
   document.getElementById('stat-pct').textContent       = pct + '%';
 
   // Progress bar
-  document.getElementById('progress-fill').style.width   = pct + '%';
+  document.getElementById('progress-fill').style.width      = pct + '%';
   document.getElementById('progress-pct-label').textContent = pct + '% of allocated budget expended';
 }
 
 function renderChart(project) {
   const ctx = document.getElementById('chart-spending').getContext('2d');
   const labels = project.yearlySpend.map(y => y.year);
-  const values = project.yearlySpend.map(y => y.total);
 
   new Chart(ctx, {
     type: 'bar',
     data: {
       labels,
-      datasets: [{
-        label: 'Amount Spent',
-        data: values,
-        backgroundColor: PALETTE.earth,
-        borderRadius: 4,
-      }],
+      datasets: [
+        {
+          label: 'Spent',
+          data: project.yearlySpend.map(y => y.confirmed ? y.total : 0),
+          backgroundColor: PALETTE.earth,
+          borderRadius: 4,
+        },
+        {
+          label: 'Planned',
+          data: project.yearlySpend.map(y => y.confirmed ? 0 : y.total),
+          backgroundColor: PALETTE.stoneDark,
+          borderRadius: 4,
+        },
+      ],
     },
     options: {
       responsive: true,
@@ -89,9 +98,9 @@ function renderTable(project) {
   project.yearlySpend.forEach(yr => {
     // Year header row
     const yearRow = document.createElement('tr');
-    yearRow.className = 'year-row';
+    yearRow.className = 'year-row' + (yr.confirmed ? '' : ' year-row-planned');
     yearRow.innerHTML = `
-      <td colspan="2">${yr.year}</td>
+      <td colspan="2">${yr.year}${yr.confirmed ? '' : ' <span class="planned-tag">Planned</span>'}</td>
       <td class="amount-cell">${formatDollar(yr.total)}</td>`;
     tbody.appendChild(yearRow);
 
