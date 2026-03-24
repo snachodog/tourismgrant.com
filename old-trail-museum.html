@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" data-project="old-trail-museum">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Old Trail Museum – Rocky Mountain Front Interpretive Center – Choteau Area Community Tourism Grant</title>
+  <meta name="description" content="Project details, spending breakdown, and milestones for the Old Trail Museum Rocky Mountain Front Interpretive Center funded through the Choteau Area Community Tourism Grant." />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js" defer></script>
+  <script src="project.js" defer></script>
+</head>
+<body>
+
+  <header class="project-page-hero" role="banner">
+    <div class="container">
+      <a href="index.html" class="back-link">&#8592; Back to Grant Overview</a>
+      <p class="section-label" style="color: var(--color-sage-light);">Major Project</p>
+      <h1>Old Trail Museum – Rocky Mountain Front Interpretive Center</h1>
+      <div class="hero-meta">
+        <span class="status-badge badge-in-progress">In Progress</span>
+        <span class="hero-allocated">Choteau Area Community Tourism Grant</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Summary Stats -->
+    <section id="project-summary" aria-labelledby="summary-heading">
+      <div class="container">
+        <p class="section-label">Financial Summary</p>
+        <h2 id="summary-heading">Budget &amp; Spending</h2>
+        <p>
+          Development of a Rocky Mountain Front Interpretive Center at the
+          Old Trail Museum, expanding interpretive exhibits and educational
+          programming for visitors to the Choteau area.
+          <!-- TODO: Update with confirmed project description -->
+        </p>
+        <p><a href="https://oldtrailmuseum.org/" target="_blank" rel="noopener">Visit the Old Trail Museum website &#8594;</a></p>
+
+        <div class="project-stats-grid" role="list">
+          <div class="stat-card" role="listitem">
+            <div class="stat-value" id="stat-allocated">–</div>
+            <div class="stat-label">Total Allocated</div>
+          </div>
+          <div class="stat-card" role="listitem">
+            <div class="stat-value" id="stat-spent">–</div>
+            <div class="stat-label">Spent to Date</div>
+          </div>
+          <div class="stat-card" role="listitem">
+            <div class="stat-value" id="stat-remaining">–</div>
+            <div class="stat-label">Remaining</div>
+          </div>
+          <div class="stat-card" role="listitem">
+            <div class="stat-value" id="stat-pct">–</div>
+            <div class="stat-label">Budget Expended</div>
+          </div>
+        </div>
+
+        <div class="progress-block" role="region" aria-label="Budget progress">
+          <div class="progress-label">
+            <span>Budget Progress</span>
+            <span id="progress-pct-label">–</span>
+          </div>
+          <div class="progress-bar-track">
+            <div class="progress-bar-fill" id="progress-fill" style="width:0%"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Spending Chart & Table -->
+    <section id="spending-breakdown" aria-labelledby="spending-heading">
+      <div class="container">
+        <p class="section-label">Spending Detail</p>
+        <h2 id="spending-heading">Annual Spending Breakdown</h2>
+
+        <div class="chart-card" style="margin-top:1.5rem;">
+          <h3>Spending by Fiscal Year</h3>
+          <div class="chart-wrapper">
+            <canvas id="chart-spending" role="img" aria-label="Bar chart of Old Trail Museum project spending by fiscal year"></canvas>
+          </div>
+        </div>
+
+        <div class="spending-table-wrap">
+          <table class="spending-table" aria-label="Old Trail Museum spending line items">
+            <thead>
+              <tr>
+                <th colspan="2">Description</th>
+                <th style="text-align:right;">Amount</th>
+              </tr>
+            </thead>
+            <tbody id="spending-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Milestones -->
+    <section id="milestones" aria-labelledby="milestones-heading">
+      <div class="container">
+        <p class="section-label">Progress</p>
+        <h2 id="milestones-heading">Project Milestones</h2>
+        <ul class="milestones-list" id="milestones-list" aria-label="Project milestone tracker"></ul>
+      </div>
+    </section>
+
+    <!-- Goals -->
+    <section id="project-goals" aria-labelledby="goals-heading">
+      <div class="container">
+        <p class="section-label">Objectives</p>
+        <h2 id="goals-heading">Project Goals</h2>
+        <!-- TODO: Update goals with confirmed project objectives -->
+        <ul class="goals-list" id="goals-list" aria-label="Project goals"></ul>
+      </div>
+    </section>
+
+    <!-- Photo -->
+    <section id="project-photos" aria-labelledby="photos-heading">
+      <div class="container">
+        <p class="section-label">Gallery</p>
+        <h2 id="photos-heading">Project Photos</h2>
+        <div class="project-detail-image">
+          <!-- TODO: Replace with actual project photo -->
+          <img src="assets/images/old-trail-museum-placeholder.jpg"
+               alt="Old Trail Museum Rocky Mountain Front Interpretive Center in Choteau, Montana"
+               onerror="this.parentElement.innerHTML='Photo coming soon'" />
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer role="contentinfo">
+    <div class="footer-inner">
+      <p class="footer-attribution">
+        Funds provided by the Montana Department of Commerce and
+        supported by the Choteau Area Port Authority
+      </p>
+      <p class="footer-scope">
+        This site provides information about the Choteau Area
+        community tourism grant program only.
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>

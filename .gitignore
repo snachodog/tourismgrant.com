@@ -1,0 +1,64 @@
+# ── OS & Editor ──────────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+Desktop.ini
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# ── AI / LLM tool files ──────────────────────────────────────
+.claude
+.claude/
+.cursor/
+.cursorignore
+.cursorrules
+.aider*
+.chatgpt*
+.openai*
+openai.env
+chatgpt.env
+claude.env
+*.anthropic
+*.openai
+llm-context*
+ai-context*
+prompt-cache*
+
+# ── Environment & secrets ────────────────────────────────────
+.env
+.env.*
+*.env
+!.env.example
+secrets.*
+*.secret
+*.pem
+*.key
+*.cert
+*.p12
+*.pfx
+
+# ── Node (if ever introduced) ────────────────────────────────
+node_modules/
+npm-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+.pnp.*
+
+# ── Build outputs ────────────────────────────────────────────
+dist/
+build/
+out/
+.cache/
+.parcel-cache/
+
+# ── Cloudflare ───────────────────────────────────────────────
+.wrangler/
+
+# ── Logs ─────────────────────────────────────────────────────
+*.log
+logs/
