@@ -186,7 +186,7 @@ section:nth-child(even) { background: var(--color-stone-dark); }
 #hero {
   background:
     linear-gradient(160deg, rgba(107, 79, 42, 0.82) 0%, rgba(160, 120, 80, 0.70) 100%),
-    url('assets/images/choteau-ear-mountain-hero.jpg') center / cover no-repeat;
+    url('assets/images/choteau-ear-mountain-hero.avif') center / cover no-repeat;
   color: var(--color-white);
   padding: 5rem 1.25rem 4rem;
   text-align: center;
