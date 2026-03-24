@@ -8,7 +8,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Choteau Area Community Tourism Grant</title>
   <meta name="description" content="Information about the Choteau Area community tourism grant program serving Choteau and Bynum, Montana." />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="preload" href="style.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="style.css" /></noscript>
+  <link rel="preload" as="image" href="assets/images/choteau-ear-mountain-hero.avif" fetchpriority="high" type="image/avif" />
   <!-- Chart.js CDN -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js" defer></script>
   <script src="main.js" defer></script>
@@ -331,10 +333,8 @@
           <!-- Community Pool -->
           <article class="community-card" aria-labelledby="comm3-heading">
             <div class="community-image-placeholder">
-              <!-- TODO: Replace src with actual photo when available -->
-              <img src="assets/images/community-pool-placeholder.jpg"
-                   alt="Community pool project in Choteau, Montana"
-                   onerror="this.parentElement.innerHTML='&#128247; Photo coming soon'" />
+              <img src="assets/images/pool-sanding.avif"
+                   alt="Community pool sandblasting and repainting in Choteau, Montana" />
             </div>
             <div class="community-body">
               <h3 id="comm3-heading">Choteau Lions Club Swim Pool</h3>
@@ -434,7 +434,7 @@
       <p class="footer-attribution">
         Funds provided by the Montana Department of Commerce and
         supported by the Choteau Area Port Authority.</p>
-      <a href="https://github.com/snachodog/pctgp-website" class="footer-github" target="_blank" rel="noopener" aria-label="View source on GitHub">
+      <a href="https://github.com/snachodog/tourismgrant.com" class="footer-github" target="_blank" rel="noopener" aria-label="View source on GitHub">
         <svg class="github-icon" viewBox="0 0 16 16" aria-hidden="true" fill="currentColor">
           <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
             0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
@@ -445,7 +445,6 @@
             .51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48
             0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
         </svg>
-        snachodog/pctgp-website
       </a>
     </div>
   </footer>
