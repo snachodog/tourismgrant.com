@@ -1,0 +1,176 @@
+{
+  "totalGrant": 2750000,
+  "communityFundTotal": 265800,
+  "note_communityFundTotal": "Sum of direct community project line items (EV charging, ADA ramp, community identified project funding) across all fiscal years. Does not include coordinator, visioning, marketing, or admin line items.",
+  "fiscalYear": "June 1 – May 31",
+  "annualAllocations": [
+    { "year": "FY2026", "amount": 250000,  "note": "Year 1: June 1, 2025 – May 31, 2026" },
+    { "year": "FY2027", "amount": 1000000, "note": "Year 2: June 1, 2026 – May 31, 2027" },
+    { "year": "FY2028", "amount": 750000,  "note": "Year 3: June 1, 2027 – May 31, 2028" },
+    { "year": "FY2029", "amount": 500000,  "note": "Year 4: June 1, 2028 – May 31, 2029" },
+    { "year": "FY2030", "amount": 250000,  "note": "Year 5: June 1, 2029 – May 31, 2030" }
+  ],
+  "projectAllocations": [
+    {
+      "name": "Weatherbeater Renovation",
+      "amount": 432600
+    },
+    {
+      "name": "Old Trail Museum – Rocky Mountain Front Interpretive Center",
+      "amount": 565000
+    },
+    {
+      "name": "Montana Dinosaur Center Gallery Expansion",
+      "amount": 1037500
+    }
+  ],
+  "communityFundAnnual": [
+    { "year": "FY2026", "amount": 58800,  "note": "EV Charging Stations ($21,000) + Choteau School ADA Ramp ($11,800) + Community Tourism Grant ($26,000)" },
+    { "year": "FY2027", "amount": 25500,  "note": "Community Identified Project Funding" },
+    { "year": "FY2028", "amount": 0,      "note": "No community project funding allocated this year" },
+    { "year": "FY2029", "amount": 18000,  "note": "Community Identified Project Funding" },
+    { "year": "FY2030", "amount": 163500, "note": "Community Identified Project Funding" }
+  ],
+  "projectDetails": [
+    {
+      "id": "weatherbeater",
+      "name": "Weatherbeater Renovation",
+      "page": "weatherbeater.html",
+      "status": "In Progress",
+      "totalAllocated": 432600,
+      "description": "Comprehensive renovation of the Weatherbeater Arena to expand its capacity to serve visitors and support tourism-related events in the Choteau area.",
+      "goals": [
+        "TODO: Add project goals",
+        "TODO: Confirm completion milestones with project manager"
+      ],
+      "milestones": [
+        { "label": "Arena appraisal", "fiscalYear": "FY2026", "status": "complete" },
+        { "label": "\"No Rise\" flood certification", "fiscalYear": "FY2026", "status": "complete" },
+        { "label": "Renovation – Phase 1", "fiscalYear": "FY2026", "status": "complete" },
+        { "label": "Renovation – Phase 2", "fiscalYear": "FY2027", "status": "complete" },
+        { "label": "Renovation – Phase 3 (completion) & sound equipment", "fiscalYear": "FY2028", "status": "complete" }
+      ],
+      "yearlySpend": [
+        {
+          "year": "FY2026",
+          "total": 37600,
+          "lineItems": [
+            { "description": "Arena appraisal", "amount": 2600 },
+            { "description": "\"No Rise\" flood certification", "amount": 0 },
+            { "description": "Renovation – Phase 1 begins", "amount": 35000 }
+          ]
+        },
+        {
+          "year": "FY2027",
+          "total": 370000,
+          "lineItems": [
+            { "description": "Renovation – Phase 2 (continued)", "amount": 370000 }
+          ]
+        },
+        {
+          "year": "FY2028",
+          "total": 25000,
+          "lineItems": [
+            { "description": "Renovation – Phase 3 (completion)", "amount": 20000 },
+            { "description": "Sound equipment purchase", "amount": 5000 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "old-trail-museum",
+      "name": "Old Trail Museum – Rocky Mountain Front Interpretive Center",
+      "page": "old-trail-museum.html",
+      "status": "In Progress",
+      "totalAllocated": 565000,
+      "description": "Development of a Rocky Mountain Front Interpretive Center at the Old Trail Museum, expanding interpretive exhibits and educational programming for visitors to the region.",
+      "goals": [
+        "TODO: Add project goals",
+        "TODO: Confirm exhibit themes and programming details"
+      ],
+      "milestones": [
+        { "label": "Permitting & site assessments", "fiscalYear": "FY2026", "status": "complete" },
+        { "label": "Architectural design", "fiscalYear": "FY2026", "status": "complete" },
+        { "label": "Demolition", "fiscalYear": "FY2027", "status": "complete" },
+        { "label": "Construction – Phase 1", "fiscalYear": "FY2027", "status": "complete" },
+        { "label": "Construction – Phase 2 (completion)", "fiscalYear": "FY2028", "status": "in-progress" }
+      ],
+      "yearlySpend": [
+        {
+          "year": "FY2026",
+          "total": 40000,
+          "lineItems": [
+            { "description": "Permitting & site assessments", "amount": 15000 },
+            { "description": "Architectural design", "amount": 25000 }
+          ]
+        },
+        {
+          "year": "FY2027",
+          "total": 385000,
+          "lineItems": [
+            { "description": "Demolition", "amount": 55000 },
+            { "description": "Construction – draw 1", "amount": 100000 },
+            { "description": "Construction – draw 2", "amount": 70000 },
+            { "description": "Construction – draw 3", "amount": 70000 },
+            { "description": "Construction – draw 4", "amount": 90000 }
+          ]
+        },
+        {
+          "year": "FY2028",
+          "total": 140000,
+          "lineItems": [
+            { "description": "Construction – completion draw", "amount": 140000 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "montana-dinosaur-center",
+      "name": "Montana Dinosaur Center Gallery Expansion",
+      "page": "montana-dinosaur-center.html",
+      "status": "In Progress",
+      "totalAllocated": 1037500,
+      "description": "Expansion of gallery space at the Montana Dinosaur Center, accommodating new fossil exhibits and increasing visitor capacity at one of the region's premier tourist destinations.",
+      "goals": [
+        "TODO: Add project goals",
+        "TODO: Confirm new exhibit details and opening timeline"
+      ],
+      "milestones": [
+        { "label": "Architectural design", "fiscalYear": "FY2026", "status": "complete" },
+        { "label": "Construction – Phase 1", "fiscalYear": "FY2027", "status": "complete" },
+        { "label": "Construction – Phase 2", "fiscalYear": "FY2028", "status": "complete" },
+        { "label": "Construction – Phase 3 (completion)", "fiscalYear": "FY2029", "status": "in-progress" }
+      ],
+      "yearlySpend": [
+        {
+          "year": "FY2026",
+          "total": 55000,
+          "lineItems": [
+            { "description": "Architectural design", "amount": 55000 }
+          ]
+        },
+        {
+          "year": "FY2027",
+          "total": 100000,
+          "lineItems": [
+            { "description": "Construction – Phase 1", "amount": 100000 }
+          ]
+        },
+        {
+          "year": "FY2028",
+          "total": 482500,
+          "lineItems": [
+            { "description": "Construction – Phase 2", "amount": 482500 }
+          ]
+        },
+        {
+          "year": "FY2029",
+          "total": 400000,
+          "lineItems": [
+            { "description": "Construction – Phase 3 (completion)", "amount": 400000 }
+          ]
+        }
+      ]
+    }
+  ]
+}

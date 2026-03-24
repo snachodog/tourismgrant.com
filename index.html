@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Choteau Area Community Tourism Grant</title>
+  <meta name="description" content="Information about the Choteau Area community tourism grant program serving Choteau and Bynum, Montana." />
+  <link rel="stylesheet" href="style.css" />
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js" defer></script>
+  <script src="main.js" defer></script>
+</head>
+<body>
+
+  <!-- =====================================================
+       SECTION 1: Header / Hero
+       ===================================================== -->
+  <header id="hero" role="banner">
+    <div class="container">
+      <p class="section-label" style="color: var(--color-sage-light);">Choteau &amp; Bynum, Montana</p>
+      <h1>Choteau Area Community Tourism Grant</h1>
+      <p class="hero-subtitle">
+        Supporting tourism infrastructure and community amenities in the
+        Choteau and Bynum area through dedicated grant funding.
+      </p>
+      <p class="hero-geo">Geographic scope: Choteau and Bynum, Montana</p>
+      <span class="attribution">
+        Funds provided by the Montana Department of Commerce and
+        supported by the Choteau Area Port Authority
+      </span>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- =====================================================
+         SECTION 2: Grant Overview
+         ===================================================== -->
+    <section id="overview" aria-labelledby="overview-heading">
+      <div class="container">
+        <p class="section-label">Program Overview</p>
+        <h2 id="overview-heading">About the Grant</h2>
+        <p>
+          The Choteau Area Community Tourism Grant is a multi-year program
+          dedicated to strengthening tourism infrastructure in Choteau and
+          Bynum, Montana. Funding supports major facility improvements,
+          interpretive center development, and community amenity projects
+          that benefit visitors and residents alike.
+        </p>
+
+        <div class="overview-grid" role="list">
+          <div class="stat-card" role="listitem">
+            <div class="stat-value">$2.75M</div>
+            <div class="stat-label">Total Award</div>
+          </div>
+          <div class="stat-card" role="listitem">
+            <div class="stat-value">Through May 2030</div>
+            <div class="stat-label">Program Period</div>
+          </div>
+          <div class="stat-card" role="listitem">
+            <div class="stat-value">Choteau &amp; Bynum</div>
+            <div class="stat-label">Geographic Eligibility</div>
+          </div>
+          <div class="stat-card" role="listitem">
+            <div class="stat-value">Tourism&nbsp;Infrastructure</div>
+            <div class="stat-label">Purpose</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         SECTION 3: Fund Allocation Charts
+         All financial data loaded from data/allocations.json
+         ===================================================== -->
+    <section id="allocations" aria-labelledby="allocations-heading">
+      <div class="container">
+        <p class="section-label">Funding Data</p>
+        <h2 id="allocations-heading">Fund Allocation</h2>
+        <p>
+          The charts below reflect the planned allocation of grant funds
+          across years and projects. Figures are updated as information is
+          confirmed.
+        </p>
+
+        <div class="charts-grid">
+
+          <!-- Chart A: Annual Allocation -->
+          <div class="chart-card">
+            <h3>Annual Grant Funding</h3>
+            <div class="chart-wrapper" id="wrap-annual">
+              <canvas id="chart-annual" role="img" aria-label="Bar chart showing annual grant funding by fiscal year"></canvas>
+            </div>
+          </div>
+
+          <!-- Chart B: Project Allocation Donut -->
+          <div class="chart-card">
+            <h3>Major Project Allocations</h3>
+            <div class="chart-wrapper" id="wrap-projects">
+              <canvas id="chart-projects" role="img" aria-label="Donut chart showing allocation across the three major funded projects"></canvas>
+            </div>
+          </div>
+
+          <!-- Chart C: Community Fund by Year -->
+          <div class="chart-card">
+            <h3>Community Tourism Fund by Year</h3>
+            <div class="chart-wrapper" id="wrap-community">
+              <canvas id="chart-community" role="img" aria-label="Bar chart showing community tourism fund amounts by fiscal year"></canvas>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         SECTION 4: Major Projects
+         Funding amounts intentionally omitted until confirmed
+         ===================================================== -->
+    <section id="major-projects" aria-labelledby="major-projects-heading">
+      <div class="container">
+        <p class="section-label">Funded Initiatives</p>
+        <h2 id="major-projects-heading">Major Projects</h2>
+        <p>
+          Three major projects are supported through this grant program,
+          each contributing to the region's tourism and cultural
+          infrastructure.
+        </p>
+
+        <div class="projects-grid">
+
+          <!-- Project 1: Weatherbeater Renovation -->
+          <article class="project-card" aria-labelledby="proj1-heading">
+            <div class="project-image-placeholder">
+              <!-- TODO: Replace src with actual project photo when available -->
+              <img src="assets/images/weatherbeater-placeholder.jpg"
+                   alt="Placeholder image for the Weatherbeater Renovation project"
+                   onerror="this.parentElement.innerHTML='&#128247; Photo coming soon'" />
+            </div>
+            <div class="project-body">
+              <h3 id="proj1-heading">Weatherbeater Renovation</h3>
+              <!-- TODO: Update status badge when confirmed -->
+              <span class="status-badge badge-planning">Planning</span>
+              <p>
+                Renovation and improvements to the Weatherbeater facility
+                to enhance its capacity to serve visitors and support
+                tourism-related activities in the Choteau area.
+                <!-- TODO: Update description with confirmed project details -->
+              </p>
+              <a href="weatherbeater.html" class="project-link">View Project Details &#8594;</a>
+            </div>
+          </article>
+
+          <!-- Project 2: Old Trail Museum -->
+          <article class="project-card" aria-labelledby="proj2-heading">
+            <div class="project-image-placeholder">
+              <!-- TODO: Replace src with actual project photo when available -->
+              <img src="assets/images/old-trail-museum-placeholder.jpg"
+                   alt="Placeholder image for the Old Trail Museum Rocky Mountain Front Interpretive Center"
+                   onerror="this.parentElement.innerHTML='&#128247; Photo coming soon'" />
+            </div>
+            <div class="project-body">
+              <h3 id="proj2-heading">Old Trail Museum &ndash; Rocky Mountain Front Interpretive Center</h3>
+              <!-- TODO: Update status badge when confirmed -->
+              <span class="status-badge badge-planning">Planning</span>
+              <p>
+                Development of a Rocky Mountain Front Interpretive Center
+                at the Old Trail Museum, expanding interpretive exhibits
+                and educational resources for visitors to the region.
+                <!-- TODO: Update description with confirmed project details -->
+              </p>
+              <a href="old-trail-museum.html" class="project-link">View Project Details &#8594;</a>
+            </div>
+          </article>
+
+          <!-- Project 3: Montana Dinosaur Center -->
+          <article class="project-card" aria-labelledby="proj3-heading">
+            <div class="project-image-placeholder">
+              <!-- TODO: Replace src with actual project photo when available -->
+              <img src="assets/images/dinosaur-center-placeholder.jpg"
+                   alt="Placeholder image for the Montana Dinosaur Center Gallery Expansion"
+                   onerror="this.parentElement.innerHTML='&#128247; Photo coming soon'" />
+            </div>
+            <div class="project-body">
+              <h3 id="proj3-heading">Montana Dinosaur Center Gallery Expansion</h3>
+              <!-- TODO: Update status badge when confirmed -->
+              <span class="status-badge badge-planning">Planning</span>
+              <p>
+                Expansion of gallery space at the Montana Dinosaur Center,
+                accommodating new fossil exhibits and increasing visitor
+                capacity at one of the area's premier tourist destinations.
+                <!-- TODO: Update description with confirmed project details -->
+              </p>
+              <a href="montana-dinosaur-center.html" class="project-link">View Project Details &#8594;</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         SECTION 5: Community Projects
+         ===================================================== -->
+    <section id="community-projects" aria-labelledby="community-projects-heading">
+      <div class="container">
+        <p class="section-label">Community Impact</p>
+        <h2 id="community-projects-heading">Community Projects</h2>
+        <p>
+          In addition to the major funded initiatives, the grant program
+          supports community amenity projects that serve both residents
+          and visitors.
+        </p>
+
+        <div class="community-grid">
+
+          <!-- EV Charging Stations -->
+          <article class="community-card" aria-labelledby="comm1-heading">
+            <div class="community-image-placeholder">
+              <!-- TODO: Replace src with actual photo when available -->
+              <img src="assets/images/ev-charging-placeholder.jpg"
+                   alt="EV charging station installation in the Choteau area"
+                   onerror="this.parentElement.innerHTML='&#128247; Photo coming soon'" />
+            </div>
+            <div class="community-body">
+              <h3 id="comm1-heading">EV Charging Stations</h3>
+              <span class="status-badge badge-complete">Complete</span>
+              <p>
+                Installation of electric vehicle charging stations to
+                support sustainable travel and attract EV-driving visitors
+                to the Choteau and Bynum area.
+                <!-- TODO: Update description with confirmed details -->
+              </p>
+            </div>
+          </article>
+
+          <!-- Accessible School Ramp -->
+          <article class="community-card" aria-labelledby="comm2-heading">
+            <div class="community-image-placeholder">
+              <!-- TODO: Replace src with actual photo when available -->
+              <img src="assets/images/school-ramp-placeholder.jpg"
+                   alt="Accessible ramp installation at a local school in Choteau"
+                   onerror="this.parentElement.innerHTML='&#128247; Photo coming soon'" />
+            </div>
+            <div class="community-body">
+              <h3 id="comm2-heading">Accessible School Ramp</h3>
+              <span class="status-badge badge-complete">Complete</span>
+              <p>
+                The Choteau Public Schools have installed a Garaventa X3
+                Inclined Platform Lift in the School Auditorium, making the
+                facility fully accessible for the first time. The total cost
+                of the project was $39,500, and the investment moved up the
+                timeline significantly. The Auditorium is used not only for
+                school events but for community concerts and programs that
+                draw visitors from the area.
+              </p>
+              <blockquote>
+                "Our school has this incredible resource in the form of our
+                beautiful auditorium. It is an incredible asset to bring
+                people together and to our town. Now, with the addition of
+                this wheelchair lift, our auditorium can be fully appreciated
+                by any visitor, and they can take part in our programming in
+                the front row!"
+                <cite>— Will Dewey, Choteau Public Schools</cite>
+              </blockquote>
+            </div>
+          </article>
+
+          <!-- Community Pool -->
+          <article class="community-card" aria-labelledby="comm3-heading">
+            <div class="community-image-placeholder">
+              <!-- TODO: Replace src with actual photo when available -->
+              <img src="assets/images/community-pool-placeholder.jpg"
+                   alt="Community pool project in Choteau, Montana"
+                   onerror="this.parentElement.innerHTML='&#128247; Photo coming soon'" />
+            </div>
+            <div class="community-body">
+              <h3 id="comm3-heading">Choteau Lions Club Swim Pool</h3>
+              <!-- Status: In Progress — do not mark as complete until confirmed -->
+              <span class="status-badge badge-in-progress">In Progress</span>
+              <p>
+                Grant funding helped cover the cost of sandblasting and
+                repainting the pool, extending the life of this beloved
+                community recreation facility.
+              </p>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         SECTION 6: Video Section
+         TODO: Uncomment and add YouTube URL when Windfall video is published
+         ===================================================== -->
+    <!--
+    <section id="video-section" aria-labelledby="video-heading">
+      <div class="container">
+        <p class="section-label">Watch</p>
+        <h2 id="video-heading">About This Grant</h2>
+        <div class="video-wrapper">
+          <iframe
+            src="https://www.youtube.com/embed/TODO_ADD_VIDEO_ID_HERE"
+            title="About the Choteau Area Community Tourism Grant"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+    </section>
+    -->
+    <section id="video-section" aria-hidden="true">
+      <!-- Video section hidden — uncomment block above when Windfall video is published -->
+    </section>
+
+  </main>
+
+  <!-- =====================================================
+       Footer
+       ===================================================== -->
+  <footer role="contentinfo">
+    <div class="footer-inner">
+      <p class="footer-attribution">
+        Funds provided by the Montana Department of Commerce and
+        supported by the Choteau Area Port Authority
+      </p>
+      <p class="footer-scope">
+        This site provides information about the Choteau Area
+        community tourism grant program only.
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>
