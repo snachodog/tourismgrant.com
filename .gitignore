@@ -65,3 +65,14 @@ logs/
 
 .dev.vars*
 !.dev.vars.example
+
+# ── Docs ─────────────────────────────────────────────────────
+*.doc
+*.xls
+*.xlsx
+*.docx
+*.gsheet
+*.gdocs
+*.rtf
+docs/
+docs
