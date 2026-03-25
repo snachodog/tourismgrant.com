@@ -107,9 +107,9 @@ function buildProjectChart(data) {
       maintainAspectRatio: true,
       plugins: {
         legend: {
-          position: 'bottom',
-          align: 'start',
-          labels: { font: { size: 11 }, padding: 12, boxWidth: 14 },
+          position: 'right',
+          align: 'center',
+          labels: { font: { size: 12 }, padding: 16, boxWidth: 14, boxHeight: 14 },
         },
         tooltip: {
           callbacks: {
