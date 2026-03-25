@@ -67,27 +67,10 @@ function buildAnnualChart(data) {
   });
 }
 
-// Wrap a label string into an array of lines at word boundaries
-function wrapLabel(text, maxChars = 28) {
-  const words = text.split(' ');
-  const lines = [];
-  let line = '';
-  for (const word of words) {
-    if (line && (line + ' ' + word).length > maxChars) {
-      lines.push(line);
-      line = word;
-    } else {
-      line = line ? line + ' ' + word : word;
-    }
-  }
-  if (line) lines.push(line);
-  return lines.length > 1 ? lines : text;
-}
-
 // Build Project Allocation donut chart
 function buildProjectChart(data) {
   const ctx = document.getElementById('chart-projects').getContext('2d');
-  const labels = data.projectAllocations.map(d => wrapLabel(d.name));
+  const labels = data.projectAllocations.map(d => d.name);
   const values = data.projectAllocations.map(d => d.amount);
 
   new Chart(ctx, {
@@ -108,7 +91,7 @@ function buildProjectChart(data) {
       plugins: {
         legend: {
           position: 'bottom',
-          align: 'start',
+          align: 'center',
           labels: { font: { size: 11 }, padding: 20, boxWidth: 14 },
         },
         tooltip: {
