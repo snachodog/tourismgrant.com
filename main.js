@@ -67,10 +67,35 @@ function buildAnnualChart(data) {
   });
 }
 
+// Wrap a label to fit within maxPx using actual canvas text measurement
+function wrapLabel(text, font, maxPx) {
+  const tmp = document.createElement('canvas').getContext('2d');
+  tmp.font = font;
+  if (tmp.measureText(text).width <= maxPx) return text;
+  const words = text.split(' ');
+  const lines = [];
+  let line = '';
+  for (const word of words) {
+    const test = line ? line + ' ' + word : word;
+    if (line && tmp.measureText(test).width > maxPx) {
+      lines.push(line);
+      line = word;
+    } else {
+      line = test;
+    }
+  }
+  if (line) lines.push(line);
+  return lines;
+}
+
 // Build Project Allocation donut chart
 function buildProjectChart(data) {
-  const ctx = document.getElementById('chart-projects').getContext('2d');
-  const labels = data.projectAllocations.map(d => d.name);
+  const canvas = document.getElementById('chart-projects');
+  const ctx = canvas.getContext('2d');
+  const legendFont = '11px Calibri, "Gill Sans", "Trebuchet MS", "Segoe UI", sans-serif';
+  // Available text width: container minus color box (14px), gap (8px), and side margins (~20px)
+  const maxTextWidth = canvas.parentElement.offsetWidth - 42;
+  const labels = data.projectAllocations.map(d => wrapLabel(d.name, legendFont, maxTextWidth));
   const values = data.projectAllocations.map(d => d.amount);
 
   new Chart(ctx, {
@@ -88,10 +113,11 @@ function buildProjectChart(data) {
     options: {
       responsive: true,
       maintainAspectRatio: true,
+      layout: { padding: 10 },
       plugins: {
         legend: {
           position: 'bottom',
-          align: 'center',
+          align: 'start',
           labels: { font: { size: 11 }, padding: 20, boxWidth: 14 },
         },
         tooltip: {
