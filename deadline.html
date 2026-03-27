@@ -148,6 +148,33 @@
       margin: 0;
     }
 
+    .org-card.complete {
+      background: #001a0a;
+      border-color: #27ae60;
+    }
+
+    .org-card.complete h3 {
+      color: #2ecc71;
+    }
+
+    .org-card.complete p {
+      color: #7ecf9e;
+    }
+
+    .org-card.complete .done-badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #27ae60;
+      background: #002a10;
+      border: 1px solid #27ae60;
+      border-radius: 4px;
+      padding: 0.15rem 0.5rem;
+      margin-top: 0.5rem;
+    }
+
     /* Consequence block */
     .consequence-block {
       max-width: 640px;
@@ -280,9 +307,10 @@
           <h3>Old Trail Museum</h3>
           <p>All project vendor invoices must be in hand and submitted.</p>
         </div>
-        <div class="org-card">
+        <div class="org-card complete">
           <h3>Montana Dinosaur Center</h3>
-          <p>All project vendor invoices must be in hand and submitted.</p>
+          <p>Invoices submitted. Nothing left to do here.</p>
+          <span class="done-badge">&#10003; Complete</span>
         </div>
       </div>
 
