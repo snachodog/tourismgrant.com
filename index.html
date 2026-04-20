@@ -29,6 +29,12 @@
   <!-- Chart.js CDN -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js" defer></script>
   <script src="main.js" defer></script>
+  <!-- Formspree AJAX -->
+  <script>
+    window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+    formspree('initForm', { formElement: '#contact-form', formId: 'xzdyvnwv' });
+  </script>
+  <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 </head>
 <body>
 
@@ -379,6 +385,81 @@
       <!-- Video section hidden — uncomment block above when Windfall video is published -->
     </section>
 
+
+    <!-- =====================================================
+         Contact Form
+         ===================================================== -->
+    <section id="contact" aria-labelledby="contact-heading">
+      <div class="container">
+        <p class="section-label">Get in Touch</p>
+        <h2 id="contact-heading">Contact the Committee</h2>
+        <p>
+          Reach out with questions about the grant program, to sign up for
+          meeting notifications, or &mdash; if you represent a local nonprofit &mdash;
+          to be notified when new community grants become available.
+        </p>
+
+        <form class="contact-form" id="contact-form" novalidate>
+
+          <div data-fs-success role="status" aria-live="polite"></div>
+
+          <div class="form-row">
+            <div>
+              <label for="contact-name">Name <span class="required" aria-hidden="true">*</span></label>
+              <input type="text" id="contact-name" name="name" required data-fs-field autocomplete="name" />
+              <span data-fs-error="name"></span>
+            </div>
+            <div>
+              <label for="contact-email">Email <span class="required" aria-hidden="true">*</span></label>
+              <input type="email" id="contact-email" name="email" required data-fs-field autocomplete="email" />
+              <span data-fs-error="email"></span>
+            </div>
+          </div>
+
+          <div>
+            <label for="contact-org">Organization <span class="hint">(optional)</span></label>
+            <input type="text" id="contact-org" name="organization" data-fs-field autocomplete="organization" />
+            <span data-fs-error="organization"></span>
+          </div>
+
+          <fieldset>
+            <legend>I&rsquo;d like to&hellip; <span class="hint" style="font-weight:400;">(optional)</span></legend>
+
+            <label class="checkbox-option">
+              <input type="checkbox" name="interests" value="meeting-notifications" />
+              <span>
+                <span class="option-label">Be notified about upcoming committee meetings</span>
+              </span>
+            </label>
+
+            <label class="checkbox-option">
+              <input type="checkbox" name="interests" value="grant-notifications" />
+              <span>
+                <span class="option-label">Be notified when new community grants become available</span>
+                <span class="option-desc">For local nonprofits in the Choteau area interested in applying for future grant cycles.</span>
+              </span>
+            </label>
+
+            <label class="checkbox-option">
+              <input type="checkbox" name="interests" value="general-inquiry" />
+              <span>
+                <span class="option-label">Ask a question or share general feedback</span>
+              </span>
+            </label>
+          </fieldset>
+
+          <div>
+            <label for="contact-message">Message <span class="hint">(optional &mdash; but helpful)</span></label>
+            <textarea id="contact-message" name="message" data-fs-field></textarea>
+            <span data-fs-error="message"></span>
+          </div>
+
+          <div data-fs-error role="alert"></div>
+
+          <button type="submit" data-fs-submit-btn>Send Message</button>
+        </form>
+      </div>
+    </section>
 
   </main>
 
