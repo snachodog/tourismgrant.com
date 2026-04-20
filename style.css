@@ -779,18 +779,11 @@ footer .footer-attribution {
   font-family: var(--font-sans);
 }
 
-.contact-form fieldset {
+.contact-form .checkbox-group {
   border: 1px solid var(--color-stone-dark);
   border-radius: var(--radius);
-  padding: 0.85rem 1rem 1rem;
+  padding: 0.5rem 0.85rem;
   background: var(--color-white);
-}
-
-.contact-form legend {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--color-text);
-  padding: 0 0.5rem;
 }
 
 .contact-form .checkbox-option {
