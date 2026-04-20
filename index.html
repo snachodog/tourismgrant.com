@@ -422,31 +422,34 @@
             <span data-fs-error="organization"></span>
           </div>
 
-          <fieldset>
-            <legend>I&rsquo;d like to&hellip; <span class="hint" style="font-weight:400;">(optional)</span></legend>
+          <div>
+            <label id="interests-label">I&rsquo;d like to&hellip; <span class="hint">(optional)</span></label>
+            <div class="checkbox-group" role="group" aria-labelledby="interests-label">
 
-            <label class="checkbox-option">
-              <input type="checkbox" name="interests" value="meeting-notifications" />
-              <span>
-                <span class="option-label">Be notified about upcoming committee meetings</span>
-              </span>
-            </label>
+              <label class="checkbox-option">
+                <input type="checkbox" name="interests" value="meeting-notifications" />
+                <span>
+                  <span class="option-label">Be notified about upcoming committee meetings</span>
+                </span>
+              </label>
 
-            <label class="checkbox-option">
-              <input type="checkbox" name="interests" value="grant-notifications" />
-              <span>
-                <span class="option-label">Be notified when new community grants become available</span>
-                <span class="option-desc">For local nonprofits in the Choteau area interested in applying for future grant cycles.</span>
-              </span>
-            </label>
+              <label class="checkbox-option">
+                <input type="checkbox" name="interests" value="grant-notifications" />
+                <span>
+                  <span class="option-label">Be notified when new community grants become available</span>
+                  <span class="option-desc">For local nonprofits in the Choteau area interested in applying for future grant cycles.</span>
+                </span>
+              </label>
 
-            <label class="checkbox-option">
-              <input type="checkbox" name="interests" value="general-inquiry" />
-              <span>
-                <span class="option-label">Ask a question or share general feedback</span>
-              </span>
-            </label>
-          </fieldset>
+              <label class="checkbox-option">
+                <input type="checkbox" name="interests" value="general-inquiry" />
+                <span>
+                  <span class="option-label">Ask a question or share general feedback</span>
+                </span>
+              </label>
+
+            </div>
+          </div>
 
           <div>
             <label for="contact-message">Message <span class="hint">(optional &mdash; but helpful)</span></label>
