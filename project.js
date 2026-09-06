@@ -6,12 +6,12 @@
 const DATA_URL = 'data/allocations.json';
 
 const PALETTE = {
-  earth:      '#6b4f2a',
-  earthLight: '#a07850',
-  sage:       '#7a8c6e',
-  sky:        '#4a7fa5',
-  stone:      '#f4f0eb',
-  stoneDark:  '#e2dbd0',
+  earth:      '#b9812a',
+  earthLight: '#cc9a44',
+  sage:       '#7c8b6f',
+  sky:        '#35597a',
+  stone:      '#eeede4',
+  stoneDark:  '#e1dfd0',
 };
 
 function formatDollar(n) {
@@ -108,7 +108,7 @@ function renderTable(project) {
     yr.lineItems.forEach(item => {
       const row = document.createElement('tr');
       row.innerHTML = `
-        <td style="padding-left:1.5rem; color: var(--color-text-muted);" colspan="2">${item.description}</td>
+        <td style="padding-left:1.5rem; color: var(--ink-soft);" colspan="2">${item.description}</td>
         <td class="amount-cell">${formatDollar(item.amount)}</td>`;
       tbody.appendChild(row);
     });

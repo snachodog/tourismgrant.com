@@ -4,17 +4,17 @@
 
 const DATA_URL = 'data/allocations.json';
 
-// Chart.js color palette (Montana earth tones)
+// Chart.js color palette (prairie gold / Front blue / sage)
 const PALETTE = {
-  earth:      '#6b4f2a',
-  earthLight: '#a07850',
-  sage:       '#7a8c6e',
-  sageLight:  '#c2cebc',
-  sky:        '#4a7fa5',
-  skyLight:   '#d0e4f0',
-  accent:     '#b35a1f',
-  stone:      '#f4f0eb',
-  stoneDark:  '#e2dbd0',
+  earth:      '#b9812a',
+  earthLight: '#cc9a44',
+  sage:       '#7c8b6f',
+  sageLight:  '#dde3d2',
+  sky:        '#35597a',
+  skyLight:   '#d7e3ec',
+  accent:     '#8a5a12',
+  stone:      '#eeede4',
+  stoneDark:  '#e1dfd0',
 };
 
 const PIE_COLORS = [PALETTE.earth, PALETTE.sky, PALETTE.sage];
@@ -59,7 +59,7 @@ function buildAnnualChart(data) {
           ticks: {
             callback: v => '$' + (v >= 1000000 ? (v / 1000000).toFixed(1) + 'M' : v.toLocaleString()),
           },
-          grid: { color: '#e2dbd0' },
+          grid: { color: '#e1dfd0' },
         },
         x: { grid: { display: false } },
       },
@@ -92,7 +92,7 @@ function wrapLabel(text, font, maxPx) {
 function buildProjectChart(data) {
   const canvas = document.getElementById('chart-projects');
   const ctx = canvas.getContext('2d');
-  const legendFont = '11px Calibri, "Gill Sans", "Trebuchet MS", "Segoe UI", sans-serif';
+  const legendFont = '11px "Public Sans", -apple-system, "Segoe UI", Arial, sans-serif';
   // Available text width: container minus color box (14px), gap (8px), and side margins (~20px)
   const maxTextWidth = canvas.parentElement.offsetWidth - 42;
   const labels = data.projectAllocations.map(d => wrapLabel(d.name, legendFont, maxTextWidth));
@@ -164,7 +164,7 @@ function buildCommunityChart(data) {
           ticks: {
             callback: v => '$' + (v >= 1000000 ? (v / 1000000).toFixed(1) + 'M' : v.toLocaleString()),
           },
-          grid: { color: '#e2dbd0' },
+          grid: { color: '#e1dfd0' },
         },
         x: { grid: { display: false } },
       },
