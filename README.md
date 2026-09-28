@@ -15,51 +15,51 @@ Funded projects include:
 - **Montana Dinosaur Center Gallery Expansion** – New gallery space for the seismosaurus model and specimen storage
 - **Choteau Lions Club Swim Pool** – Sandblasting, repainting, and structural repairs
 
-## Structure
+## Stack
+
+The site runs on [EmDash](https://github.com/emdash-cms/emdash) (Astro 7 on Cloudflare Workers, content in D1, media in R2). Content is edited in the admin UI at `/_emdash/admin`.
 
 ```
-├── index.html                    # Grant overview and project summary
-├── weatherbeater.html            # Weatherbeater project detail
-├── old-trail-museum.html         # Old Trail Museum project detail
-├── montana-dinosaur-center.html  # Montana Dinosaur Center project detail
-├── style.css                     # Site-wide styles
-├── main.js                       # Home page charts (Chart.js)
-├── project.js                    # Shared project detail page logic
-├── data/
-│   └── allocations.json          # Single source of truth for all financial data
-├── assets/
-│   └── images/                   # Optimized .avif images
-└── docs/                         # Source documents (not served)
+├── seed/seed.json          # Collections, menu, site settings, and the initial content
+├── src/
+│   ├── layouts/Site.astro  # Header, footer, nav (from the "primary" menu), SEO tags
+│   ├── pages/index.astro   # Grant overview
+│   ├── pages/[slug].astro  # Major project detail pages (projects collection)
+│   ├── pages/community-grants.astro
+│   ├── pages/data/allocations.json.ts   # Builds the JSON that main.js/project.js chart
+│   └── utils/grant.ts      # Shared queries and totals
+├── public/                 # style.css, main.js, project.js, images, deadline.html, robots.txt, sitemap.xml
+└── wrangler.jsonc          # Worker "pctgp-website", D1 (DB) and R2 (MEDIA) bindings
+```
+
+## Content model
+
+- `projects`: the three major projects, with allocation, goals, milestones, and yearly spend.
+- `community_projects`: community cards on the overview and the 2026 recipients list.
+- `fiscal_years`: annual grant amount and community fund amount. The $2.75M and $265.8K totals are sums of these rows.
+
+## Develop
+
+Needs Node 22.12 or newer.
+
+```bash
+npm install
+npm run dev     # then open /_emdash/admin
+npm run deploy  # astro build && wrangler deploy
 ```
 
 ## Data
 
-All financial data lives in [`data/allocations.json`](data/allocations.json). Each project entry includes:
+Financial data lives in the EmDash `projects` and `fiscal_years` collections (initial values in [`seed/seed.json`](seed/seed.json)). In each project's `yearly_spend`:
 
-- `totalAllocated` – total grant allocation
-- `yearlySpend` – line-item spending by fiscal year
-  - `confirmed: true` – actual/verified spending
-  - `confirmed: false` – planned/projected spending
+- `confirmed: true` is actual, verified spending.
+- `confirmed: false` is planned spending.
 
-Budget stats and charts on project pages reflect only confirmed (actual) spending.
-
-## Development
-
-This is a plain HTML/CSS/JS site — no build step required. Open any `.html` file directly in a browser, or use a local server:
-
-```bash
-npx serve .
-```
+Budget stats and charts on project pages count only confirmed spending.
 
 ## Deployment
 
-Deployed to Cloudflare Workers via the Cloudflare GitHub integration. Pushing to `main` triggers an automatic deploy. The `wrangler.jsonc` configures Workers Assets with the project root as the asset directory.
-
-Manual deploy (requires Cloudflare API token):
-
-```bash
-npx wrangler deploy
-```
+The Cloudflare GitHub integration deploys `main`. This branch needs a D1 database (`DB`) and an R2 bucket (`MEDIA`) before its first deploy. On first request against an empty database, EmDash runs the setup wizard and applies `seed/seed.json`. Old `*.html` URLs redirect to the new paths.
 
 ## License
 
