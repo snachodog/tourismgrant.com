@@ -3,7 +3,7 @@
    Shared script for individual project detail pages
    ============================================================ */
 
-const DATA_URL = 'data/allocations.json';
+const DATA_URL = '/data/allocations.json';
 
 const PALETTE = {
   earth:      '#b9812a',

@@ -1,0 +1,145 @@
+---
+import { getEmDashEntry, getSeoMeta, decodeSlug, getSiteSettings } from "emdash";
+import Site from "../layouts/Site.astro";
+import { badgeClass } from "../utils/grant";
+
+const slug = decodeSlug(Astro.params.slug);
+if (!slug) return Astro.redirect("/404");
+
+const { entry: project, cacheHint } = await getEmDashEntry("projects", slug);
+if (!project) return Astro.redirect("/404");
+if (Astro.cache?.enabled) Astro.cache.set(cacheHint);
+
+const seo = getSeoMeta(project, {
+	siteTitle: (await getSiteSettings()).title ?? "",
+	siteUrl: Astro.url.origin,
+	path: Astro.url.pathname.replace(/\/$/, ""),
+});
+---
+
+<Site
+  title={project.data.meta_title ?? `${project.data.title} | Choteau Area Community Tourism Grant`}
+  description={seo.description ?? project.data.meta_description}
+  ogImage={project.data.card_image}
+  ogImageAlt={project.data.card_image_alt}
+  projectId={project.id}
+  content={{ collection: "projects", id: project.data.id, slug }}
+>
+  <Fragment slot="head">
+    <script is:inline src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js" defer></script>
+    <script is:inline src="/project.js" defer></script>
+  </Fragment>
+
+  <header class="project-page-hero" role="banner">
+    <div class="container">
+      <a href="/" class="back-link">&#8592; Back to Grant Overview</a>
+      <p class="section-label" style="color: #e3b768;">Major Project</p>
+      <h1>{project.data.title}</h1>
+      <div class="hero-meta">
+        <span class={`status-badge ${badgeClass(project.data.detail_status)}`}>{project.data.detail_status}</span>
+        <span class="hero-allocated">Choteau Area Community Tourism Grant</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    
+    <section id="project-summary" aria-labelledby="summary-heading">
+      <div class="container">
+        <p class="section-label">Financial Summary</p>
+        <h2 id="summary-heading">Budget &amp; Spending</h2>
+        <p>
+          {project.data.intro}
+        </p>
+
+        <div class="project-stats-grid" role="list">
+          <div class="stat-card" role="listitem">
+            <div class="stat-value" id="stat-allocated">–</div>
+            <div class="stat-label">Total Allocated</div>
+          </div>
+          <div class="stat-card" role="listitem">
+            <div class="stat-value" id="stat-spent">–</div>
+            <div class="stat-label">Spent to Date</div>
+          </div>
+          <div class="stat-card" role="listitem">
+            <div class="stat-value" id="stat-remaining">–</div>
+            <div class="stat-label">Remaining</div>
+          </div>
+          <div class="stat-card" role="listitem">
+            <div class="stat-value" id="stat-pct">–</div>
+            <div class="stat-label">Budget Expended</div>
+          </div>
+        </div>
+
+        <div class="progress-block" role="region" aria-label="Budget progress">
+          <div class="progress-label">
+            <span>Budget Progress</span>
+            <span id="progress-pct-label">–</span>
+          </div>
+          <div class="progress-bar-track">
+            <div class="progress-bar-fill" id="progress-fill" style="width:0%"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+    <section id="spending-breakdown" aria-labelledby="spending-heading">
+      <div class="container">
+        <p class="section-label">Spending Detail</p>
+        <h2 id="spending-heading">Annual Spending Breakdown</h2>
+
+        <div class="chart-card" style="margin-top:1.5rem;">
+          <h3>Spending by Fiscal Year</h3>
+          <div class="chart-wrapper">
+            <canvas id="chart-spending" role="img" aria-label={`Bar chart of ${project.data.title} spending by fiscal year`}></canvas>
+          </div>
+        </div>
+
+        <div class="spending-table-wrap">
+          <table class="spending-table" aria-label={`${project.data.title} spending line items`}>
+            <thead>
+              <tr>
+                <th colspan="2">Description</th>
+                <th style="text-align:right;">Amount</th>
+              </tr>
+            </thead>
+            <tbody id="spending-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    
+    <section id="milestones" aria-labelledby="milestones-heading">
+      <div class="container">
+        <p class="section-label">Progress</p>
+        <h2 id="milestones-heading">Project Milestones</h2>
+        <ul class="milestones-list" id="milestones-list" aria-label="Project milestone tracker"></ul>
+      </div>
+    </section>
+
+    
+    <section id="project-goals" aria-labelledby="goals-heading">
+      <div class="container">
+        <p class="section-label">Objectives</p>
+        <h2 id="goals-heading">Project Goals</h2>
+        <ul class="goals-list" id="goals-list" aria-label="Project goals"></ul>
+      </div>
+    </section>
+
+    
+    <section id="project-photos" aria-labelledby="photos-heading">
+      <div class="container">
+        <p class="section-label">Gallery</p>
+        <h2 id="photos-heading">Project Photos</h2>
+        <div class="project-detail-image">
+          <img src={project.data.photo} alt={project.data.photo_alt}
+               onerror="this.parentElement.innerHTML='Photo coming soon'" />
+        </div>
+      </div>
+    </section>
+
+  </main>
+</Site>

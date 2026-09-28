@@ -2,7 +2,7 @@
    Choteau Area Community Tourism Grant – main.js
    ============================================================ */
 
-const DATA_URL = 'data/allocations.json';
+const DATA_URL = '/data/allocations.json';
 
 // Chart.js color palette (prairie gold / Front blue / sage)
 const PALETTE = {
