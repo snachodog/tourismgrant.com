@@ -22,6 +22,7 @@ export default defineConfig({
 	integrations: [
 		react(),
 		emdash({
+			siteUrl: "https://tourismgrant.com",
 			database: d1({ binding: "DB", session: "auto" }),
 		}),
 	],
