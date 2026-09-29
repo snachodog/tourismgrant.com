@@ -17,7 +17,7 @@ Funded projects include:
 
 ## Stack
 
-The site runs on [EmDash](https://github.com/emdash-cms/emdash) (Astro 7 on Cloudflare Workers, content in D1, media in R2). Content is edited in the admin UI at `/_emdash/admin`.
+The site runs on [EmDash](https://github.com/emdash-cms/emdash) (Astro 7 on Cloudflare Workers, content in D1). Content is edited in the admin UI at `/_emdash/admin`.
 
 ```
 ├── seed/seed.json          # Collections, menu, site settings, and the initial content
@@ -29,7 +29,7 @@ The site runs on [EmDash](https://github.com/emdash-cms/emdash) (Astro 7 on Clou
 │   ├── pages/data/allocations.json.ts   # Builds the JSON that main.js/project.js chart
 │   └── utils/grant.ts      # Shared queries and totals
 ├── public/                 # style.css, main.js, project.js, images, deadline.html, robots.txt, sitemap.xml
-└── wrangler.jsonc          # Worker "pctgp-website", D1 (DB) and R2 (MEDIA) bindings
+└── wrangler.jsonc          # Worker "pctgp-website", D1 (DB) binding
 ```
 
 ## Content model
@@ -59,7 +59,7 @@ Budget stats and charts on project pages count only confirmed spending.
 
 ## Deployment
 
-The Cloudflare GitHub integration deploys `main`. This branch needs a D1 database (`DB`) and an R2 bucket (`MEDIA`) before its first deploy. On first request against an empty database, EmDash runs the setup wizard and applies `seed/seed.json`. Old `*.html` URLs redirect to the new paths.
+The Cloudflare GitHub integration deploys `main`. The D1 database `pctgp-website` (binding `DB`) already exists. Media uploads in the admin are off because no R2 storage is configured; add `storage: r2({ binding: "MEDIA" })` and an R2 bucket to turn them on. On first request against an empty database, EmDash runs the setup wizard and applies `seed/seed.json`. Old `*.html` URLs redirect to the new paths.
 
 ## License
 
