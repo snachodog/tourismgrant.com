@@ -1,0 +1,123 @@
+---
+import { getMenuWithCacheHint, getSiteSettingsWithCacheHint } from "emdash";
+import { EmDashHead, EmDashBodyStart, EmDashBodyEnd } from "emdash/ui";
+import { createPublicPageContext } from "emdash/page";
+import { resolveStarterSiteIdentity } from "../utils/site-identity";
+
+interface Props {
+	title: string;
+	description?: string | null;
+	ogImage?: string;
+	ogImageAlt?: string;
+	/** Value for <html data-project>; project.js reads it. */
+	projectId?: string;
+	content?: { collection: string; id: string; slug?: string | null };
+}
+
+const { title, description, ogImage, ogImageAlt, projectId, content } = Astro.props;
+const [settingsResult, menuResult] = await Promise.all([
+	getSiteSettingsWithCacheHint(),
+	getMenuWithCacheHint("primary"),
+]);
+if (Astro.cache?.enabled) {
+	Astro.cache.set(settingsResult.cacheHint);
+	Astro.cache.set(menuResult.cacheHint);
+}
+const { siteTitle, siteTagline } = resolveStarterSiteIdentity(settingsResult.data);
+const menu = menuResult.data;
+const pageDescription = description ?? siteTagline;
+const path = Astro.url.pathname.replace(/\/$/, "") || "/";
+const canonical = new URL(path, Astro.url.origin).toString();
+const image = new URL(ogImage ?? "/assets/images/choteau-ear-mountain-hero.avif", Astro.url.origin).toString();
+const imageAlt = ogImageAlt ?? "Ear Mountain rising above the Rocky Mountain Front near Choteau, Montana";
+
+const pageCtx = createPublicPageContext({
+	Astro,
+	kind: content ? "content" : "custom",
+	pageType: "website",
+	title,
+	pageTitle: title,
+	description: pageDescription,
+	canonical,
+	image,
+	content,
+	siteName: siteTitle,
+});
+---
+
+<!doctype html>
+<html lang="en" data-project={projectId}>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>{title}</title>
+		<meta name="description" content={pageDescription} />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={canonical} />
+		<meta property="og:site_name" content={siteTitle} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={pageDescription} />
+		<meta property="og:image" content={image} />
+		<meta property="og:image:alt" content={imageAlt} />
+		<meta property="og:locale" content="en_US" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={pageDescription} />
+		<meta name="twitter:image" content={image} />
+		<meta name="twitter:image:alt" content={imageAlt} />
+		<link rel="canonical" href={canonical} />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&display=swap" />
+		<link rel="stylesheet" href="/style.css" />
+		<slot name="head" />
+		<EmDashHead page={pageCtx} />
+	</head>
+	<body>
+		<EmDashBodyStart page={pageCtx} />
+
+		<div class="site-header">
+			<div class="container site-header-inner">
+				<a href="/" class="site-logo-link">
+					<img
+						src="/assets/images/choteau-swoosh-logo.webp"
+						alt="Choteau Community Tourism"
+						width="200"
+						height="141"
+						class="site-logo"
+					/>
+				</a>
+				<nav class="site-nav" aria-label="Site navigation">
+					<ul>
+						{
+							menu?.items.map((item) => (
+								<li>
+									<a href={item.url} aria-current={item.url === path ? "page" : undefined}>
+										{item.label}
+									</a>
+								</li>
+							))
+						}
+					</ul>
+				</nav>
+			</div>
+		</div>
+
+		<slot />
+
+		<footer role="contentinfo">
+			<div class="footer-inner">
+				<p class="footer-attribution">
+					Funds provided by the Montana Department of Commerce and supported by the Choteau Area Port Authority.
+				</p>
+				<a href="https://github.com/snachodog/tourismgrant.com" class="footer-github" target="_blank" rel="noopener" aria-label="View source on GitHub">
+					<svg class="github-icon" viewBox="0 0 16 16" aria-hidden="true" fill="currentColor">
+						<path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" />
+					</svg>
+				</a>
+			</div>
+		</footer>
+
+		<EmDashBodyEnd page={pageCtx} />
+	</body>
+</html>

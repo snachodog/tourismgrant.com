@@ -1,0 +1,77 @@
+---
+import Site from "../layouts/Site.astro";
+import { badgeClass, loadGrant } from "../utils/grant";
+
+const g = await loadGrant();
+if (Astro.cache?.enabled) g.cacheHints.forEach((h) => Astro.cache.set(h));
+const recipients = g.community.filter((c) => c.data.group === "recipient_2026");
+---
+
+<Site
+  title="Community Grants & Initiatives | Choteau Area Community Tourism Grant"
+  description="Community grants from the Choteau Area Community Tourism Grant program support local nonprofits across Choteau and Bynum. 2026 recipients: Choteau Lions Club Swimming Pool, Bynum Civic Club Park, and Choteau Community Arts Summer Art Program."
+>
+  <header class="project-page-hero" role="banner">
+    <div class="container">
+      <a href="/" class="back-link">&#8592; Back to Grant Overview</a>
+      <p class="section-label" style="color: #e3b768;">Community Initiatives</p>
+      <h1>Community Grants & Initiatives</h1>
+      <div class="hero-meta">
+        <span class="hero-allocated">Choteau Area Community Tourism Grant</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <section id="about-community-grants" aria-labelledby="about-heading">
+      <div class="container">
+        <p class="section-label">About</p>
+        <h2 id="about-heading">Supporting Local Nonprofits</h2>
+        <p>
+          Community grants are awarded to local nonprofit organizations in
+          Choteau and Bynum when funds are available within the Choteau Area
+          Community Tourism Grant program. These smaller awards support
+          projects that enrich community life, draw visitors to the area,
+          and build on the region&rsquo;s identity as a destination along the
+          Rocky Mountain Front.
+        </p>
+      </div>
+    </section>
+
+    <section id="recipients-2026" aria-labelledby="recipients-heading">
+      <div class="container">
+        <p class="section-label">2026 Awards</p>
+        <h2 id="recipients-heading">2026 Community Grant Recipients</h2>
+
+        <div class="community-grid">
+          {recipients.map((c, i) => (
+            <article class="community-card" aria-labelledby={`rec${i + 1}-heading`}>
+              <div class="community-body">
+                <h3 id={`rec${i + 1}-heading`}>{c.data.title}</h3>
+                <span class={`status-badge ${badgeClass(c.data.project_status)}`}>{c.data.project_status}</span>
+                <p>{c.data.description}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="wayfinding" aria-labelledby="wayfinding-heading">
+      <div class="container">
+        <p class="section-label">Committee Initiative</p>
+        <h2 id="wayfinding-heading">Wayfinding &amp; Marketing</h2>
+        <p>
+          Over the remaining years of the grant, the Choteau Tourism Grant
+          Committee&rsquo;s Wayfinding and Marketing Group will be working
+          to improve signage throughout Choteau. Better wayfinding helps
+          visitors navigate the town, find local businesses and attractions,
+          and make the most of their time in the area, turning drive-through
+          traffic into overnight stays and repeat visitors.
+        </p>
+      </div>
+    </section>
+
+  </main>
+</Site>
