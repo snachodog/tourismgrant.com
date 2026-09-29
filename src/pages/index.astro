@@ -1,0 +1,295 @@
+---
+import { getSiteSettings } from "emdash";
+import Site from "../layouts/Site.astro";
+import { badgeClass, loadGrant } from "../utils/grant";
+import { resolveStarterSiteIdentity } from "../utils/site-identity";
+
+const g = await loadGrant();
+if (Astro.cache?.enabled) g.cacheHints.forEach((h) => Astro.cache.set(h));
+const { siteTagline } = resolveStarterSiteIdentity(await getSiteSettings());
+const compact = (n: number) =>
+	n >= 1_000_000 ? `$${+(n / 1_000_000).toFixed(2)}M` : `$${+(n / 1000).toFixed(1)}K`;
+---
+
+<Site
+  title="Choteau Area Community Tourism Grant | Choteau, Montana"
+  description={`Tracking ${compact(g.totalGrant)} in Montana tourism grant funding across three major infrastructure projects in Choteau and Bynum: the Weatherbeater Renovation, Old Trail Museum Rocky Mountain Front Interpretive Center, and Montana Dinosaur Center Gallery Expansion.`}
+>
+  <Fragment slot="head">
+    <script is:inline src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js" defer></script>
+    <script is:inline src="/main.js" defer></script>
+    <script is:inline>
+      window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+      formspree('initForm', { formElement: '#contact-form', formId: 'xzdyvnwv' });
+    </script>
+    <script is:inline src="https://unpkg.com/@formspree/ajax@1" defer></script>
+  </Fragment>
+
+  <header id="hero" role="banner">
+    <div class="container">
+      <h1>Choteau Area Community Tourism Grant</h1>
+      <p class="hero-subtitle">
+        {siteTagline}
+      </p>
+      <span class="attribution">
+        Funds provided by the Montana Department of Commerce and
+        supported by the Choteau Area Port Authority
+      </span>
+    </div>
+  </header>
+
+  <main>
+
+    <section id="overview" aria-labelledby="overview-heading">
+      <div class="container">
+        <p class="section-label">Program Overview</p>
+        <h2 id="overview-heading">About the Grant</h2>
+        <p>
+          <strong>Mission:</strong> Choteau Community Tourism's mission is to
+          grow sustainable, year-round tourism in the Choteau area by improving
+          shared infrastructure, strengthening partnerships, and highlighting
+          the assets that make our community special.
+        </p>
+
+        <div class="overview-grid" role="list">
+          <div class="stat-card" role="listitem">
+            <div class="stat-value">{compact(g.totalGrant)}</div>
+            <div class="stat-label">Total grant, state-funded</div>
+          </div>
+          <div class="stat-card" role="listitem">
+            <div class="stat-value">2025&ndash;2030</div>
+            <div class="stat-label">Five-year grant period</div>
+          </div>
+          <div class="stat-card" role="listitem">
+            <div class="stat-value">{g.projects.length}</div>
+            <div class="stat-label">Major projects funded</div>
+          </div>
+          <div class="stat-card" role="listitem">
+            <div class="stat-value">{compact(g.communityFundTotal)}</div>
+            <div class="stat-label">Set aside for community grants</div>
+          </div>
+        </div>
+
+        <h3>Program Goals</h3>
+        <ul>
+          <li>Grow sustainable, year-round tourism to benefit visitors, local businesses, and residents.</li>
+          <li>Improve the infrastructure used by visitors and residents.</li>
+          <li>Promote local tourism assets through signage, advertising, and increasing digital visibility.</li>
+          <li>Encourage collaboration among local stakeholders to build a shared vision for sustainable year-round tourism.</li>
+          <li>Ensure long-term benefits of tourism for businesses, community members, and visitors.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="origins" aria-labelledby="origins-heading">
+      <div class="container">
+        <p class="section-label">Background</p>
+        <h2 id="origins-heading">How This Grant Came to Be</h2>
+        <p>
+          The Choteau Area Community Tourism Grant is funded by
+          Montana Senate Bill 540 (SB-540), passed by the Montana Legislature
+          and signed into law. SB-540 authorized the Montana Department of
+          Commerce to establish the <strong>Pilot Community Tourism Grant
+          Program (PCTGP)</strong>, a state-funded initiative designed to
+          help Montana communities increase economic vibrancy, strengthen
+          tourism infrastructure, and develop sustainable regional tourism
+          strategies.
+        </p>
+        <p>
+          The PCTGP was created to give communities the resources to enhance
+          tourism-related assets, support local businesses, and foster the
+          cross-sector collaboration needed to promote long-term economic
+          growth: not just for visitors, but for the people who live and
+          work here year-round.
+        </p>
+        <p>
+          In 2025, the <strong>Choteau Area Port Authority (CAPA)</strong>
+          applied for PCTGP funding and was awarded a <strong>$2.75 million
+          grant</strong> spanning five fiscal years from June 2025 through
+          May 2030. The project is formally titled <em>Choteau: Celebrating
+          our Heritage, Cultivating our Future</em>.
+        </p>
+        <p>
+          To administer the grant, CAPA established <strong>Choteau Community
+          Tourism</strong> as the program's Steering Committee. Made up of
+          local stakeholders, the committee oversees project implementation,
+          community outreach, and fiscal management across the Choteau and
+          Bynum areas.
+        </p>
+      </div>
+    </section>
+
+    <section id="allocations" aria-labelledby="allocations-heading">
+      <div class="container">
+        <p class="section-label">Funding Data</p>
+        <h2 id="allocations-heading">Fund Allocation</h2>
+        <p>
+          The charts below reflect the planned allocation of grant funds
+          across years and projects. Figures are updated as information is
+          confirmed.
+        </p>
+
+        <div class="charts-grid">
+
+          <div class="chart-card">
+            <h3>Annual Grant Funding</h3>
+            <div class="chart-wrapper" id="wrap-annual">
+              <canvas id="chart-annual" role="img" aria-label="Bar chart showing annual grant funding by fiscal year"></canvas>
+            </div>
+          </div>
+
+          <div class="chart-card">
+            <h3>Primary Project Allocations</h3>
+            <div class="chart-wrapper" id="wrap-projects">
+              <canvas id="chart-projects" role="img" aria-label="Donut chart showing allocation across the three major funded projects"></canvas>
+            </div>
+          </div>
+
+          <div class="chart-card">
+            <h3>Community Tourism Fund by Year</h3>
+            <div class="chart-wrapper" id="wrap-community">
+              <canvas id="chart-community" role="img" aria-label="Bar chart showing community tourism fund amounts by fiscal year"></canvas>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="major-projects" aria-labelledby="major-projects-heading">
+      <div class="container">
+        <p class="section-label">Funded Initiatives</p>
+        <h2 id="major-projects-heading">Primary Projects</h2>
+        <p>
+          The grant's three largest investments, each reshaping a piece
+          of shared infrastructure Choteau and Bynum use year-round.
+        </p>
+
+        <div class="projects-grid">
+          {g.projects.map((p, i) => (
+            <article class="project-card" aria-labelledby={`proj${i + 1}-heading`}>
+              <div class="project-image-placeholder">
+                <img src={p.data.card_image} alt={p.data.card_image_alt} onerror="this.parentElement.innerHTML='&#128247; Photo coming soon'" />
+              </div>
+              <div class="project-body">
+                <h3 id={`proj${i + 1}-heading`}>{p.data.title}</h3>
+                <span class={`status-badge ${badgeClass(p.data.card_status)}`}>{p.data.card_status}</span>
+                <p>{p.data.summary}</p>
+                <a href={`/${p.id}`} class="project-link">View Project Details &#8594;</a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="community-projects" aria-labelledby="community-projects-heading">
+      <div class="container">
+        <p class="section-label">Community Impact</p>
+        <h2 id="community-projects-heading">Community Projects</h2>
+        <p>
+          Smaller-scale projects funded alongside the three major
+          initiatives, used by residents daily, and noticed by
+          visitors immediately.
+        </p>
+
+        <div class="community-grid">
+          {g.community.filter((c) => c.data.group === "home").map((c, i) => (
+            <article class="community-card" aria-labelledby={`comm${i + 1}-heading`}>
+              <div class="community-image-placeholder">
+                {c.data.image ? <img src={c.data.image} alt={c.data.image_alt} /> : <Fragment>&#128247; Photo coming soon</Fragment>}
+              </div>
+              <div class="community-body">
+                <h3 id={`comm${i + 1}-heading`}>{c.data.title}</h3>
+                <span class={`status-badge ${badgeClass(c.data.project_status)}`}>{c.data.project_status}</span>
+                <p>{c.data.description}</p>
+                {c.data.quote && (
+                  <blockquote>
+                    "{c.data.quote}"
+                    <cite>{c.data.quote_cite}</cite>
+                  </blockquote>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" aria-labelledby="contact-heading">
+      <div class="container">
+        <p class="section-label">Get in Touch</p>
+        <h2 id="contact-heading">Contact the Committee</h2>
+        <p>
+          Reach out with questions about the grant program, to sign up for
+          meeting notifications, or (if you represent a local nonprofit)
+          to be notified when new community grants become available.
+        </p>
+
+        <form class="contact-form" id="contact-form" novalidate>
+
+          <div data-fs-success role="status" aria-live="polite"></div>
+
+          <div class="form-row">
+            <div>
+              <label for="contact-name">Name <span class="required" aria-hidden="true">*</span></label>
+              <input type="text" id="contact-name" name="name" required data-fs-field autocomplete="name" />
+              <span data-fs-error="name"></span>
+            </div>
+            <div>
+              <label for="contact-email">Email <span class="required" aria-hidden="true">*</span></label>
+              <input type="email" id="contact-email" name="email" required data-fs-field autocomplete="email" />
+              <span data-fs-error="email"></span>
+            </div>
+          </div>
+
+          <div>
+            <label for="contact-org">Organization <span class="hint">(optional)</span></label>
+            <input type="text" id="contact-org" name="organization" data-fs-field autocomplete="organization" />
+            <span data-fs-error="organization"></span>
+          </div>
+
+          <div>
+            <label id="interests-label">I&rsquo;d like to&hellip; <span class="hint">(optional)</span></label>
+            <div class="checkbox-group" role="group" aria-labelledby="interests-label">
+
+              <label class="checkbox-option">
+                <input type="checkbox" name="interests" value="meeting-notifications" />
+                <span>
+                  <span class="option-label">Be notified about upcoming committee meetings</span>
+                </span>
+              </label>
+
+              <label class="checkbox-option">
+                <input type="checkbox" name="interests" value="grant-notifications" />
+                <span>
+                  <span class="option-label">Be notified when new community grants become available</span>
+                  <span class="option-desc">For local nonprofits in the Choteau area interested in applying for future grant cycles.</span>
+                </span>
+              </label>
+
+              <label class="checkbox-option">
+                <input type="checkbox" name="interests" value="general-inquiry" />
+                <span>
+                  <span class="option-label">Ask a question or share general feedback</span>
+                </span>
+              </label>
+
+            </div>
+          </div>
+
+          <div>
+            <label for="contact-message">Message <span class="hint">(optional, but helpful)</span></label>
+            <textarea id="contact-message" name="message" data-fs-field></textarea>
+            <span data-fs-error="message"></span>
+          </div>
+
+          <div data-fs-error role="alert"></div>
+
+          <button type="submit" data-fs-submit-btn>Send Message</button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+</Site>
