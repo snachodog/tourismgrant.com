@@ -10,13 +10,8 @@
 	"d1_databases": [
 		{
 			"binding": "DB",
-			"database_name": "pctgp-website"
-		}
-	],
-	"r2_buckets": [
-		{
-			"binding": "MEDIA",
-			"bucket_name": "pctgp-website-media"
+			"database_name": "pctgp-website",
+			"database_id": "8499037b-11f3-4e62-9023-4181cdc490c0"
 		}
 	],
 	"triggers": {
