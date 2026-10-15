@@ -43,6 +43,14 @@ const pageCtx = createPublicPageContext({
 	content,
 	siteName: siteTitle,
 });
+
+// Announcement bar. Edit the message here; it hides itself after `until`.
+const announcement = {
+	id: "roundtable-2026-11-12",
+	message: "Please join us for the Community Tourism Grant Roundtable 11/12, 6p @ Choteau Pavilion",
+	until: "2026-11-13T07:00:00Z",
+};
+const showAnnouncement = Date.now() < Date.parse(announcement.until);
 ---
 
 <!doctype html>
@@ -75,6 +83,26 @@ const pageCtx = createPublicPageContext({
 	</head>
 	<body>
 		<EmDashBodyStart page={pageCtx} />
+
+		{showAnnouncement && (
+			<div class="announcement-bar" id="announcement-bar" data-id={announcement.id} role="region" aria-label="Announcement" hidden>
+				<p class="announcement-text">{announcement.message}</p>
+				<button type="button" class="announcement-close" aria-label="Dismiss announcement">&times;</button>
+			</div>
+			<script is:inline>
+				(function () {
+					var bar = document.getElementById("announcement-bar");
+					if (!bar) return;
+					var key = "announcement-dismissed:" + bar.dataset.id;
+					try { if (localStorage.getItem(key)) return; } catch (e) {}
+					bar.hidden = false;
+					bar.querySelector(".announcement-close").addEventListener("click", function () {
+						bar.hidden = true;
+						try { localStorage.setItem(key, "1"); } catch (e) {}
+					});
+				})();
+			</script>
+		)}
 
 		<div class="site-header">
 			<div class="container site-header-inner">
