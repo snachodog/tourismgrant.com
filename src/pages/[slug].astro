@@ -95,14 +95,22 @@ const seo = getSeoMeta(project, {
           <div class="chart-wrapper">
             <canvas id="chart-spending" role="img" aria-label={`Bar chart of ${project.data.title} spending by fiscal year`}></canvas>
           </div>
+          <div class="visually-hidden">
+            <table id="data-spending">
+              <caption>{`${project.data.title} spending by fiscal year`}</caption>
+              <thead><tr><th scope="col">Fiscal year</th><th scope="col">Spent</th><th scope="col">Planned</th></tr></thead>
+              <tbody id="data-spending-body"></tbody>
+            </table>
+          </div>
         </div>
 
-        <div class="spending-table-wrap">
-          <table class="spending-table" aria-label={`${project.data.title} spending line items`}>
+        <div class="spending-table-wrap" tabindex="0" role="region" aria-labelledby="spending-caption">
+          <table class="spending-table">
+            <caption id="spending-caption" class="visually-hidden">{`${project.data.title} spending line items`}</caption>
             <thead>
               <tr>
-                <th colspan="2">Description</th>
-                <th style="text-align:right;">Amount</th>
+                <th scope="col" colspan="2">Description</th>
+                <th scope="col" style="text-align:right;">Amount</th>
               </tr>
             </thead>
             <tbody id="spending-tbody"></tbody>
@@ -135,8 +143,10 @@ const seo = getSeoMeta(project, {
         <p class="section-label">Gallery</p>
         <h2 id="photos-heading">Project Photos</h2>
         <div class="project-detail-image">
-          <img src={project.data.photo} alt={project.data.photo_alt}
-               onerror="this.parentElement.innerHTML='Photo coming soon'" />
+          {project.data.photo ? (
+            <img src={project.data.photo} alt={project.data.photo_alt}
+                 width="1080" height="320" loading="lazy" data-fallback="Photo coming soon" />
+          ) : <Fragment>Photo coming soon</Fragment>}
         </div>
       </div>
     </section>

@@ -16,6 +16,7 @@ const compact = (n: number) =>
   description={`Tracking ${compact(g.totalGrant)} in Montana tourism grant funding across three major infrastructure projects in Choteau and Bynum: the Weatherbeater Renovation, Old Trail Museum Rocky Mountain Front Interpretive Center, and Montana Dinosaur Center Gallery Expansion.`}
 >
   <Fragment slot="head">
+    <link rel="preload" as="image" href="/assets/images/choteau-ear-mountain-hero.avif" type="image/avif" fetchpriority="high" />
     <script is:inline src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js" defer></script>
     <script is:inline src="/main.js" defer></script>
     <script is:inline>
@@ -136,6 +137,13 @@ const compact = (n: number) =>
             <div class="chart-wrapper" id="wrap-annual">
               <canvas id="chart-annual" role="img" aria-label="Bar chart showing annual grant funding by fiscal year"></canvas>
             </div>
+            <div class="visually-hidden">
+              <table id="data-annual">
+                <caption>Annual grant funding by fiscal year</caption>
+                <thead><tr><th scope="col">Fiscal year</th><th scope="col">Amount</th></tr></thead>
+                <tbody id="data-annual-body"></tbody>
+              </table>
+            </div>
           </div>
 
           <div class="chart-card">
@@ -143,12 +151,26 @@ const compact = (n: number) =>
             <div class="chart-wrapper" id="wrap-projects">
               <canvas id="chart-projects" role="img" aria-label="Donut chart showing allocation across the three major funded projects"></canvas>
             </div>
+            <div class="visually-hidden">
+              <table id="data-projects">
+                <caption>Allocation by primary project</caption>
+                <thead><tr><th scope="col">Project</th><th scope="col">Allocation</th></tr></thead>
+                <tbody id="data-projects-body"></tbody>
+              </table>
+            </div>
           </div>
 
           <div class="chart-card">
             <h3>Community Tourism Fund by Year</h3>
             <div class="chart-wrapper" id="wrap-community">
               <canvas id="chart-community" role="img" aria-label="Bar chart showing community tourism fund amounts by fiscal year"></canvas>
+            </div>
+            <div class="visually-hidden">
+              <table id="data-community">
+                <caption>Community tourism fund by fiscal year</caption>
+                <thead><tr><th scope="col">Fiscal year</th><th scope="col">Amount</th></tr></thead>
+                <tbody id="data-community-body"></tbody>
+              </table>
             </div>
           </div>
 
@@ -169,7 +191,9 @@ const compact = (n: number) =>
           {g.projects.map((p, i) => (
             <article class="project-card" aria-labelledby={`proj${i + 1}-heading`}>
               <div class="project-image-placeholder">
-                <img src={p.data.card_image} alt={p.data.card_image_alt} onerror="this.parentElement.innerHTML='&#128247; Photo coming soon'" />
+                {p.data.card_image ? (
+                  <img src={p.data.card_image} alt={p.data.card_image_alt} width="640" height="360" loading="lazy" data-fallback="&#128247; Photo coming soon" />
+                ) : <Fragment>&#128247; Photo coming soon</Fragment>}
               </div>
               <div class="project-body">
                 <h3 id={`proj${i + 1}-heading`}>{p.data.title}</h3>
@@ -197,7 +221,7 @@ const compact = (n: number) =>
           {g.community.filter((c) => c.data.group === "home").map((c, i) => (
             <article class="community-card" aria-labelledby={`comm${i + 1}-heading`}>
               <div class="community-image-placeholder">
-                {c.data.image ? <img src={c.data.image} alt={c.data.image_alt} /> : <Fragment>&#128247; Photo coming soon</Fragment>}
+                {c.data.image ? <img src={c.data.image} alt={c.data.image_alt} width="480" height="300" loading="lazy" data-fallback="&#128247; Photo coming soon" /> : <Fragment>&#128247; Photo coming soon</Fragment>}
               </div>
               <div class="community-body">
                 <h3 id={`comm${i + 1}-heading`}>{c.data.title}</h3>

@@ -4,6 +4,7 @@
    ============================================================ */
 
 const DATA_URL = '/data/allocations.json';
+const REDUCE_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 const PALETTE = {
   earth:      '#b9812a',
@@ -65,6 +66,7 @@ function renderChart(project) {
       ],
     },
     options: {
+      ...(REDUCE_MOTION && { animation: false }),
       responsive: true,
       maintainAspectRatio: true,
       plugins: {
@@ -91,25 +93,59 @@ function renderChart(project) {
   });
 }
 
+function el(tag, className, text) {
+  const node = document.createElement(tag);
+  if (className) node.className = className;
+  if (text !== undefined) node.textContent = text;
+  return node;
+}
+
+function fillDataTable(tbodyId, rows) {
+  const tbody = document.getElementById(tbodyId);
+  if (!tbody) return;
+  rows.forEach(cells => {
+    const tr = document.createElement('tr');
+    cells.forEach((text, i) => {
+      const cell = el(i === 0 ? 'th' : 'td', '', text);
+      if (i === 0) cell.scope = 'row';
+      tr.appendChild(cell);
+    });
+    tbody.appendChild(tr);
+  });
+}
+
+function renderChartData(project) {
+  fillDataTable('data-spending-body', project.yearlySpend.map(y => [
+    String(y.year),
+    formatDollar(y.confirmed ? y.total : 0),
+    formatDollar(y.confirmed ? 0 : y.total),
+  ]));
+}
+
 function renderTable(project) {
   const tbody = document.getElementById('spending-tbody');
   let grandTotal = 0;
 
   project.yearlySpend.forEach(yr => {
     // Year header row
-    const yearRow = document.createElement('tr');
-    yearRow.className = 'year-row' + (yr.confirmed ? '' : ' year-row-planned');
-    yearRow.innerHTML = `
-      <td colspan="2">${yr.year}${yr.confirmed ? '' : ' <span class="planned-tag">Planned</span>'}</td>
-      <td class="amount-cell">${formatDollar(yr.total)}</td>`;
+    const yearRow = el('tr', 'year-row' + (yr.confirmed ? '' : ' year-row-planned'));
+    const yearCell = el('td', '', yr.year);
+    yearCell.colSpan = 2;
+    if (!yr.confirmed) {
+      yearCell.appendChild(document.createTextNode(' '));
+      yearCell.appendChild(el('span', 'planned-tag', 'Planned'));
+    }
+    yearRow.appendChild(yearCell);
+    yearRow.appendChild(el('td', 'amount-cell', formatDollar(yr.total)));
     tbody.appendChild(yearRow);
 
     // Line items
     yr.lineItems.forEach(item => {
       const row = document.createElement('tr');
-      row.innerHTML = `
-        <td style="padding-left:1.5rem; color: var(--ink-soft);" colspan="2">${item.description}</td>
-        <td class="amount-cell">${formatDollar(item.amount)}</td>`;
+      const desc = el('td', 'spending-item', item.description);
+      desc.colSpan = 2;
+      row.appendChild(desc);
+      row.appendChild(el('td', 'amount-cell', formatDollar(item.amount)));
       tbody.appendChild(row);
     });
 
@@ -117,28 +153,29 @@ function renderTable(project) {
   });
 
   // Total row
-  const totalRow = document.createElement('tr');
-  totalRow.className = 'total-row';
-  totalRow.innerHTML = `
-    <td colspan="2">Total Spent to Date</td>
-    <td class="amount-cell">${formatDollar(grandTotal)}</td>`;
+  const totalRow = el('tr', 'total-row');
+  const totalLabel = el('td', '', 'Total Spent to Date');
+  totalLabel.colSpan = 2;
+  totalRow.appendChild(totalLabel);
+  totalRow.appendChild(el('td', 'amount-cell', formatDollar(grandTotal)));
   tbody.appendChild(totalRow);
 }
 
 function renderMilestones(project) {
   const list = document.getElementById('milestones-list');
   project.milestones.forEach(m => {
-    const li = document.createElement('li');
-    li.className = 'milestone-item';
     const dotClass = m.status === 'complete' ? 'complete'
                    : m.status === 'in-progress' ? 'in-progress'
                    : 'pending';
-    li.innerHTML = `
-      <span class="milestone-dot ${dotClass}" aria-hidden="true"></span>
-      <span>
-        <span class="milestone-text">${m.label}</span><br>
-        <span class="milestone-year">${m.fiscalYear}</span>
-      </span>`;
+    const li = el('li', 'milestone-item');
+    const dot = el('span', 'milestone-dot ' + dotClass);
+    dot.setAttribute('aria-hidden', 'true');
+    const body = document.createElement('span');
+    body.appendChild(el('span', 'milestone-text', m.label));
+    body.appendChild(document.createElement('br'));
+    body.appendChild(el('span', 'milestone-year', m.fiscalYear));
+    li.appendChild(dot);
+    li.appendChild(body);
     list.appendChild(li);
   });
 }
@@ -172,10 +209,11 @@ async function init() {
   }
 
   renderStats(project);
-  renderChart(project);
+  renderChartData(project);
   renderTable(project);
   renderMilestones(project);
   renderGoals(project);
+  renderChart(project);
 }
 
 document.addEventListener('DOMContentLoaded', init);
