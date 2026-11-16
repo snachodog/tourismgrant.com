@@ -3,6 +3,7 @@
    ============================================================ */
 
 const DATA_URL = '/data/allocations.json';
+const REDUCE_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 // Chart.js color palette (prairie gold / Front blue / sage)
 const PALETTE = {
@@ -25,6 +26,22 @@ function formatDollar(n) {
   return '$' + Number(n).toLocaleString('en-US');
 }
 
+// Fill a hidden data table (text form of a chart). rows is string[][].
+function fillDataTable(tbodyId, rows) {
+  const tbody = document.getElementById(tbodyId);
+  if (!tbody) return;
+  rows.forEach(cells => {
+    const tr = document.createElement('tr');
+    cells.forEach((text, i) => {
+      const cell = document.createElement(i === 0 ? 'th' : 'td');
+      if (i === 0) cell.scope = 'row';
+      cell.textContent = text;
+      tr.appendChild(cell);
+    });
+    tbody.appendChild(tr);
+  });
+}
+
 // Build Annual Allocation bar chart
 function buildAnnualChart(data) {
   const ctx = document.getElementById('chart-annual').getContext('2d');
@@ -43,6 +60,7 @@ function buildAnnualChart(data) {
       }],
     },
     options: {
+      ...(REDUCE_MOTION && { animation: false }),
       responsive: true,
       maintainAspectRatio: true,
       plugins: {
@@ -111,6 +129,7 @@ function buildProjectChart(data) {
       }],
     },
     options: {
+      ...(REDUCE_MOTION && { animation: false }),
       responsive: true,
       maintainAspectRatio: true,
       layout: { padding: 10 },
@@ -148,6 +167,7 @@ function buildCommunityChart(data) {
       }],
     },
     options: {
+      ...(REDUCE_MOTION && { animation: false }),
       responsive: true,
       maintainAspectRatio: true,
       plugins: {
@@ -183,6 +203,10 @@ async function init() {
     console.error('Data load error:', err);
     return;
   }
+
+  fillDataTable('data-annual-body', data.annualAllocations.map(d => [String(d.year), formatDollar(d.amount)]));
+  fillDataTable('data-projects-body', data.projectAllocations.map(d => [d.name, formatDollar(d.amount)]));
+  fillDataTable('data-community-body', data.communityFundAnnual.map(d => [String(d.year), formatDollar(d.amount)]));
 
   buildAnnualChart(data);
   buildProjectChart(data);
